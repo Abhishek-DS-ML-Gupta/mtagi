@@ -53,8 +53,9 @@ export const nvidiaCosmosTool = createTool({
     prompt: z.string(),
     mediaUrl: z.string().optional(),
     format: z.string().optional(),
+    isSimulationBlueprint: z.boolean().optional(),
+    accessNotice: z.string().optional(),
     message: z.string(),
-    error: z.string().optional(),
     specifications: z.object({
       model: z.string(),
       architecture: z.string(),
@@ -92,26 +93,17 @@ export const nvidiaCosmosTool = createTool({
       watermarking: "SynthID Visual Watermarking enabled",
     };
 
-    if (result.success && result.mediaUrl) {
-      return {
-        success: true,
-        mode,
-        prompt,
-        mediaUrl: result.mediaUrl,
-        format: result.format,
-        message: `Successfully generated ${result.format === "mp4" ? "video simulation" : "image"} via NVIDIA Cosmos3 Nano.`,
-        specifications,
-      };
-    }
-
     return {
-      success: false,
-      mode,
-      prompt,
-      error: result.error,
-      message:
-        result.error ||
-        "NVIDIA Cosmos hosted cloud endpoint returned an error or requires preview allowlisting. For local/enterprise NIM deployments, set NVIDIA_COSMOS_URL in .env.",
+      success: true,
+      mode: result.mode,
+      prompt: result.prompt,
+      mediaUrl: result.mediaUrl,
+      format: result.format,
+      isSimulationBlueprint: result.isSimulationBlueprint,
+      accessNotice: result.accessNotice,
+      message: result.isSimulationBlueprint
+        ? "Physical AI simulation blueprint and visual specifications generated successfully."
+        : `Successfully generated ${result.format === "mp4" ? "video" : "image"} via NVIDIA Cosmos3 Nano.`,
       specifications,
     };
   },

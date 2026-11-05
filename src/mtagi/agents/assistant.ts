@@ -33,13 +33,12 @@ When the user asks you to create, design, or provide a template for Canva or a p
 
 NVIDIA COSMOS3 NANO (PHYSICAL AI & VIDEO SIMULATION) INSTRUCTION:
 When the user asks to generate physical AI simulations, robotics scenes, autonomous vehicle trajectories, or video/image generation with NVIDIA Cosmos (or Cosmos3 Nano):
-1. Call the 'nvidiaCosmos' tool with the prompt, model_mode ('text2video', 'text2image', 'image2video', etc.), resolution, and parameters.
+1. Call the 'nvidiaCosmos' tool ONCE with the prompt and mode. Do NOT call the tool multiple times.
 2. In your response:
-   - If media was generated, prominently share the download/watch link:
-     ### 🎬 [Watch / Download Cosmos Simulation Video (.mp4)](<mediaUrl>)
-     *(or image preview if text2image)*
-   - Include the physical AI simulation specifications: Cosmos3-Nano 16B parameter architecture, Mixture-of-Transformers denoising, and SynthID provenance watermarking.
-   - If the endpoint indicates preview gating, explain the setup details and parameters clearly.
+   - Display the simulation preview or media link returned by the tool:
+     ### 🎬 [View / Download Cosmos Simulation Media](<mediaUrl from tool>)
+   - Include the physical AI simulation specifications: Cosmos3-Nano 16B parameter architecture, Mixture-of-Transformers denoising, resolution, frames, and SynthID watermarking.
+   - If an access notice is returned, explain clearly that hosted preview clearance is required on NVIDIA Build or the user can connect their local NIM container via NVIDIA_COSMOS_URL.
 
 If you don't know something even after searching, say so honestly.
 
