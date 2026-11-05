@@ -1,4 +1,3 @@
-import type { ToolsInput } from "@mastra/core/agent";
 import { Agent } from "@mastra/core/agent";
 import { Memory } from "@mastra/memory";
 import { DEFAULT_MODEL_ID } from "@/config/models";
@@ -12,9 +11,11 @@ export const assistant = new Agent({
 Always identify yourself as mtagi, developed by Abhishek Gupta, whenever asked about your identity, name, creator, or who made you.
 Be helpful, polite, concise, and direct.
 
-If you don't know something, say so honestly.
+You have access to real-time web search via the 'webSearch' tool.
+CRITICAL: Whenever the user asks about current events, today's news, latest updates, recent developments, real-time data, or anything requiring live information, ALWAYS call the 'webSearch' tool to search the web before answering.
+NEVER say you do not have access to live web search.
 
-When web search is enabled, use it to find up-to-date information from the web.
+If you don't know something even after searching, say so honestly.
 
 You have working memory that persists across conversations. Use it to remember:
 - The user's name (use it naturally in conversation when appropriate)
@@ -26,12 +27,8 @@ When the user shares personal details, preferences, or asks you to remember some
     const modelId = requestContext?.get("modelId") as string | undefined;
     return modelId || DEFAULT_MODEL_ID;
   },
-  tools: ({ requestContext }) => {
-    const isWebSearchEnabled = requestContext?.get("webSearchEnabled");
-    if (isWebSearchEnabled) {
-      return { webSearch: webSearchTool };
-    }
-    return {} as ToolsInput;
+  tools: {
+    webSearch: webSearchTool,
   },
   memory: new Memory({
     options: {

@@ -32,14 +32,15 @@ export type ChatRequest = {
 export function parseChatRequest(params: unknown): ChatRequest {
   const parsed = chatRequestSchema.parse(params);
 
-  const isValidModel = MODELS.some((m) => m.id === parsed.modelId);
+  const candidateModel = parsed.modelId?.includes("qwen") ? undefined : parsed.modelId;
+  const isValidModel = MODELS.some((m) => m.id === candidateModel);
 
   return {
     threadId: parsed.threadId,
     messages: parsed.messages as MyUIMessage[],
     trigger: parsed.trigger,
     regenerateMessageId: parsed.messageId,
-    modelId: isValidModel ? parsed.modelId! : DEFAULT_MODEL_ID,
+    modelId: isValidModel ? candidateModel! : DEFAULT_MODEL_ID,
     webSearchEnabled: parsed.webSearchEnabled,
   };
 }

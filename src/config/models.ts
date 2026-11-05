@@ -15,12 +15,6 @@ export const MODELS = [
   {
     chef: "Groq",
     chefSlug: "groq",
-    id: "groq/qwen/qwen3.8-27b",
-    name: "Qwen 3.8 27B",
-  },
-  {
-    chef: "Groq",
-    chefSlug: "groq",
     id: "groq/openai/gpt-oss-120b",
     name: "GPT-OSS 120B",
   },
@@ -34,4 +28,4 @@ export const MODELS = [
 
 export type ModelId = (typeof MODELS)[number]["id"];
 
-export const DEFAULT_MODEL_ID: ModelId = "groq/qwen/qwen3.8-27b";
+export const DEFAULT_MODEL_ID: ModelId = "groq/openai/gpt-oss-120b";

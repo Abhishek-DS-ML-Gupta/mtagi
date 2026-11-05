@@ -1,5 +1,5 @@
 import { useCallback, useRef, useSyncExternalStore } from "react";
-import { DEFAULT_MODEL_ID } from "@/config/models";
+import { DEFAULT_MODEL_ID, MODELS } from "@/config/models";
 
 const STORAGE_KEY = "draft-composer";
 
@@ -12,7 +12,7 @@ type DraftState = {
 const DEFAULT_DRAFT: DraftState = {
   text: "",
   modelId: DEFAULT_MODEL_ID,
-  webSearchEnabled: false,
+  webSearchEnabled: true,
 };
 
 // --- Helpers ---
@@ -21,7 +21,11 @@ function readDraft(): DraftState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
-      return JSON.parse(raw) as DraftState;
+      const parsed = JSON.parse(raw) as DraftState;
+      if (parsed.modelId?.includes("qwen") || !MODELS.some((m) => m.id === parsed.modelId)) {
+        parsed.modelId = DEFAULT_MODEL_ID;
+      }
+      return parsed;
     }
   } catch {
     // corrupted data, fall through
