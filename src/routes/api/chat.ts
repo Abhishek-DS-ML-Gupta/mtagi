@@ -69,7 +69,10 @@ export const Route = createFileRoute("/api/chat")({
                     }
                   },
                   maxSteps: 20,
-                  messages: params.messages,
+                  messages:
+                    params.messages.length > 6
+                      ? params.messages.slice(-6)
+                      : params.messages,
                   requestContext,
                   memory: {
                     thread,

@@ -12,6 +12,9 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as CThreadIdRouteImport } from './routes/c/$threadId'
 import { Route as ApiChatRouteImport } from './routes/api/chat'
+import { Route as ApiDownloadPptxRouteImport } from './routes/api/download/pptx'
+import { Route as ApiCanvaCallbackRouteImport } from './routes/api/canva/callback'
+import { Route as ApiCanvaAuthRouteImport } from './routes/api/canva/auth'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -28,35 +31,81 @@ const ApiChatRoute = ApiChatRouteImport.update({
   path: '/api/chat',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiDownloadPptxRoute = ApiDownloadPptxRouteImport.update({
+  id: '/api/download/pptx',
+  path: '/api/download/pptx',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCanvaCallbackRoute = ApiCanvaCallbackRouteImport.update({
+  id: '/api/canva/callback',
+  path: '/api/canva/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiCanvaAuthRoute = ApiCanvaAuthRouteImport.update({
+  id: '/api/canva/auth',
+  path: '/api/canva/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/api/chat': typeof ApiChatRoute
   '/c/$threadId': typeof CThreadIdRoute
+  '/api/canva/auth': typeof ApiCanvaAuthRoute
+  '/api/canva/callback': typeof ApiCanvaCallbackRoute
+  '/api/download/pptx': typeof ApiDownloadPptxRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/api/chat': typeof ApiChatRoute
   '/c/$threadId': typeof CThreadIdRoute
+  '/api/canva/auth': typeof ApiCanvaAuthRoute
+  '/api/canva/callback': typeof ApiCanvaCallbackRoute
+  '/api/download/pptx': typeof ApiDownloadPptxRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/api/chat': typeof ApiChatRoute
   '/c/$threadId': typeof CThreadIdRoute
+  '/api/canva/auth': typeof ApiCanvaAuthRoute
+  '/api/canva/callback': typeof ApiCanvaCallbackRoute
+  '/api/download/pptx': typeof ApiDownloadPptxRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/api/chat' | '/c/$threadId'
+  fullPaths:
+    | '/'
+    | '/api/chat'
+    | '/c/$threadId'
+    | '/api/canva/auth'
+    | '/api/canva/callback'
+    | '/api/download/pptx'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/api/chat' | '/c/$threadId'
-  id: '__root__' | '/' | '/api/chat' | '/c/$threadId'
+  to:
+    | '/'
+    | '/api/chat'
+    | '/c/$threadId'
+    | '/api/canva/auth'
+    | '/api/canva/callback'
+    | '/api/download/pptx'
+  id:
+    | '__root__'
+    | '/'
+    | '/api/chat'
+    | '/c/$threadId'
+    | '/api/canva/auth'
+    | '/api/canva/callback'
+    | '/api/download/pptx'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ApiChatRoute: typeof ApiChatRoute
   CThreadIdRoute: typeof CThreadIdRoute
+  ApiCanvaAuthRoute: typeof ApiCanvaAuthRoute
+  ApiCanvaCallbackRoute: typeof ApiCanvaCallbackRoute
+  ApiDownloadPptxRoute: typeof ApiDownloadPptxRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -82,6 +131,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiChatRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/download/pptx': {
+      id: '/api/download/pptx'
+      path: '/api/download/pptx'
+      fullPath: '/api/download/pptx'
+      preLoaderRoute: typeof ApiDownloadPptxRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/canva/callback': {
+      id: '/api/canva/callback'
+      path: '/api/canva/callback'
+      fullPath: '/api/canva/callback'
+      preLoaderRoute: typeof ApiCanvaCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/canva/auth': {
+      id: '/api/canva/auth'
+      path: '/api/canva/auth'
+      fullPath: '/api/canva/auth'
+      preLoaderRoute: typeof ApiCanvaAuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -89,6 +159,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ApiChatRoute: ApiChatRoute,
   CThreadIdRoute: CThreadIdRoute,
+  ApiCanvaAuthRoute: ApiCanvaAuthRoute,
+  ApiCanvaCallbackRoute: ApiCanvaCallbackRoute,
+  ApiDownloadPptxRoute: ApiDownloadPptxRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

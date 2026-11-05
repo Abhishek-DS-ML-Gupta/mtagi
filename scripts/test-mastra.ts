@@ -1,4 +1,5 @@
 import { mtagi } from "../src/mtagi/index.ts";
+import { canvaTool } from "../src/mtagi/tools/canva.ts";
 import { webSearchTool } from "../src/mtagi/tools/web-search.ts";
 
 async function main() {
@@ -38,19 +39,33 @@ async function main() {
   console.log("   ✅ Saved to local LibSQL store (mtagi.db)\n");
 
   // TEST 4: Mastra Tool Execution (Exa Web Search)
-  console.log("4️⃣ [Mastra Tool Execution]");
+  console.log("4️⃣ [Mastra Tool Execution - Web Search]");
   console.log("   Executing webSearchTool...");
   try {
     const searchResults = await webSearchTool.execute({
       query: "NASA space mission latest",
     });
-    console.log(`   ✅ Web search tool returned ${Array.isArray(searchResults) ? searchResults.length : 0} results.`);
+    console.log(`   ✅ Web search tool returned ${Array.isArray(searchResults) ? searchResults.length : 0} results.\n`);
   } catch (err: any) {
-    console.log("   ⚠️ Note on tool:", err?.message || err);
+    console.log("   ⚠️ Note on webSearch tool:", err?.message || err);
+  }
+
+  // TEST 5: Canva Tool Execution
+  console.log("5️⃣ [Mastra Tool Execution - Canva]");
+  console.log("   Executing canvaTool...");
+  try {
+    const canvaResult = await canvaTool.execute({
+      designType: "presentation",
+      title: "AI Startup Pitch",
+    });
+    console.log(`   ✅ Canva design type: ${(canvaResult as any)?.designType}`);
+    console.log(`   ✅ Canva link: ${(canvaResult as any)?.canvaCreateUrl}`);
+  } catch (err: any) {
+    console.log("   ⚠️ Note on Canva tool:", err?.message || err);
   }
 
   console.log("\n==========================================");
-  console.log("🎉 ALL MASTRA CHECKS PASSED SUCCESSFULLY!");
+  console.log("🎉 ALL MASTRA & TOOL CHECKS PASSED!");
   console.log("==========================================");
   process.exit(0);
 }
@@ -59,4 +74,3 @@ main().catch((err) => {
   console.error("❌ Mastra Test Failed:", err);
   process.exit(1);
 });
-

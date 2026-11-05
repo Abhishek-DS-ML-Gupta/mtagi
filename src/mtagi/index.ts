@@ -30,7 +30,19 @@ if (originalFetch) {
         // ignore
       }
     }
-    return originalFetch.call(this, input, init);
+
+    let response = await originalFetch.call(this, input, init);
+
+    // Auto-retry once on Groq 429 rate limit using retry-after header
+    if (response.status === 429 && url && url.includes("api.groq.com")) {
+      const retryAfterHeader = response.headers.get("retry-after");
+      const waitSeconds = Math.min(Math.max(parseInt(retryAfterHeader || "5", 10) || 5, 2), 22);
+      console.warn(`[Groq TPM rate limit] Auto-retrying after ${waitSeconds}s...`);
+      await new Promise((resolve) => setTimeout(resolve, waitSeconds * 1000));
+      response = await originalFetch.call(this, input, init);
+    }
+
+    return response;
   };
 }
 

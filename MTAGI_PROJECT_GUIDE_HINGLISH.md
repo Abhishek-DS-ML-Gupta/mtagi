@@ -46,6 +46,8 @@ Is project me modern web development aur AI engineering ke sabhi top tools aur f
     - `groq/openai/gpt-oss-20b` (Fast conversational model)
 - **Exa AI (`exa-js`)**:
   - AI-native search engine API jo web pages crawl karke clean text content return karta hai real-time answers ke liye.
+- **Canva Integration (`canvaTool`)**:
+  - Direct Canva project creation links, template search, recommended dimensions, aur Canva OAuth authorization URLs (`CANVA_CLIENT_ID` & `CANVA_CLIENT_SECRET`).
 
 ### 🎨 E. UI & Styling
 - **Tailwind CSS v4**: Ultra-fast utility-first CSS framework.

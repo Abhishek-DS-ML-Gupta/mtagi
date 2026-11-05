@@ -8,11 +8,15 @@ import { fileURLToPath, URL } from "url";
 import tailwindcss from "@tailwindcss/vite";
 import { nitro } from "nitro/vite";
 
+// TanStack Start & Vite Configuration
 const config = defineConfig({
   resolve: {
     alias: {
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
+  },
+  ssr: {
+    noExternal: ["pptxgenjs"],
   },
   plugins: [
     devtools(),
