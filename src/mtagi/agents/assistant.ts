@@ -3,7 +3,6 @@ import { Memory } from "@mastra/memory";
 import { DEFAULT_MODEL_ID } from "@/config/models";
 import { workingMemorySchema } from "@/config/working-memory";
 import { canvaTool } from "@/mtagi/tools/canva";
-import { nvidiaCosmosTool } from "@/mtagi/tools/nvidia-cosmos";
 import { webSearchTool } from "@/mtagi/tools/web-search";
 
 export const assistant = new Agent({
@@ -31,15 +30,6 @@ When the user asks you to create, design, or provide a template for Canva or a p
 
 3. Then provide the complete, professional slide-by-slide deck structure (Slide 1 to Slide N) with exact Slide Titles, Bullet Points, Key Metrics, Layout Ideas, and Speaker Notes so the user gets both the instant file download and the complete presentation content blueprint.
 
-NVIDIA COSMOS3 NANO (PHYSICAL AI & VIDEO SIMULATION) INSTRUCTION:
-When the user asks to generate physical AI simulations, robotics scenes, autonomous vehicle trajectories, or video/image generation with NVIDIA Cosmos (or Cosmos3 Nano):
-1. Call the 'nvidiaCosmos' tool ONCE with the prompt and mode. Do NOT call the tool multiple times.
-2. In your response:
-   - Display the simulation preview or media link returned by the tool:
-     ### 🎬 [View / Download Cosmos Simulation Media](<mediaUrl from tool>)
-   - Include the physical AI simulation specifications: Cosmos3-Nano 16B parameter architecture, Mixture-of-Transformers denoising, resolution, frames, and SynthID watermarking.
-   - If an access notice is returned, explain clearly that hosted preview clearance is required on NVIDIA Build or the user can connect their local NIM container via NVIDIA_COSMOS_URL.
-
 If you don't know something even after searching, say so honestly.
 
 You have working memory that persists across conversations. Use it to remember:
@@ -55,7 +45,6 @@ When the user shares personal details, preferences, or asks you to remember some
   tools: {
     webSearch: webSearchTool,
     canva: canvaTool,
-    nvidiaCosmos: nvidiaCosmosTool,
   },
   memory: new Memory({
     options: {

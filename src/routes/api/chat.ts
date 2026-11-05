@@ -68,10 +68,10 @@ export const Route = createFileRoute("/api/chat")({
                       console.error("Failed to generate thread title:", error);
                     }
                   },
-                  maxSteps: 5,
+                  maxSteps: 20,
                   messages:
-                    params.messages.length > 4
-                      ? params.messages.slice(-4)
+                    params.messages.length > 6
+                      ? params.messages.slice(-6)
                       : params.messages,
                   requestContext,
                   memory: {

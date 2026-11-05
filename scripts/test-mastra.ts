@@ -1,6 +1,5 @@
 import { mtagi } from "../src/mtagi/index.ts";
 import { canvaTool } from "../src/mtagi/tools/canva.ts";
-import { nvidiaCosmosTool } from "../src/mtagi/tools/nvidia-cosmos.ts";
 import { webSearchTool } from "../src/mtagi/tools/web-search.ts";
 
 async function main() {
@@ -63,24 +62,6 @@ async function main() {
     console.log(`   ✅ Canva link: ${(canvaResult as any)?.canvaCreateUrl}`);
   } catch (err: any) {
     console.log("   ⚠️ Note on Canva tool:", err?.message || err);
-  }
-
-  // TEST 6: NVIDIA Cosmos3 Nano Tool Execution
-  console.log("\n6️⃣ [Mastra Tool Execution - NVIDIA Cosmos3 Nano]");
-  console.log("   Executing nvidiaCosmosTool...");
-  try {
-    const cosmosResult = await nvidiaCosmosTool.execute({
-      prompt: "A robotic arm picks up a component on a workbench",
-      model_mode: "text2video",
-      resolution: "480_16_9",
-      num_frames: 25,
-      fps: 24,
-    });
-    console.log(`   ✅ NVIDIA Cosmos Mode: ${(cosmosResult as any)?.mode}`);
-    console.log(`   ✅ NVIDIA Cosmos Specs: ${(cosmosResult as any)?.specifications?.model}`);
-    console.log(`   ✅ Architecture: ${(cosmosResult as any)?.specifications?.architecture}`);
-  } catch (err: any) {
-    console.log("   ⚠️ Note on NVIDIA Cosmos tool:", err?.message || err);
   }
 
   console.log("\n==========================================");

@@ -25,10 +25,6 @@
   - Automatically drafts complete slide-by-slide blueprints (titles, bullet points, KPI cards, visual themes, speaker notes).
   - **1-Click `.pptx` Download**: Generates ready-to-open 16:9 widescreen PowerPoint presentation files on the fly.
   - **Canva Integration**: Direct links to open designs in Canva, search relevant templates, and connect accounts via OAuth PKCE.
-- **🌌 NVIDIA Cosmos3 Nano (Physical AI World Model)**:
-  - Generates robotics simulations, autonomous vehicle trajectories, and world visual workflows.
-  - Supports `text2video`, `text2image`, `image2video`, `video2video`, and physical dynamics actions.
-  - Saves generated MP4 videos and JPEGs locally in `public/cosmos/` with direct download URLs and SynthID watermarking.
 - **🧵 Advanced Thread Management**: Create, view, search, branch, and delete conversations with automatic thread titling.
 - **🎨 Modern UI/UX**: Built with Tailwind CSS v4, Radix/Base UI, Dark/Light theme switching, and Streamdown rendering (Mermaid diagrams, KaTeX LaTeX math, code highlighting).
 
@@ -43,7 +39,6 @@
 | **LLM Provider** | [Groq](https://groq.com) (`openai/gpt-oss-120b`, `openai/gpt-oss-20b`) |
 | **Search Engine** | [Exa AI Search](https://exa.ai) |
 | **Design & PPTX** | [Canva Connect REST API](https://www.canva.dev), [PptxGenJS](https://gitbrent.github.io/PptxGenJS/) |
-| **Physical AI & World Model** | [NVIDIA Cosmos3 Nano](https://huggingface.co/nvidia/Cosmos3-Nano) (16B Mixture-of-Transformers) |
 | **Storage & Memory** | [LibSQL](https://github.com/tursodatabase/libsql) (Embedded SQLite) |
 | **Styling** | [Tailwind CSS v4](https://tailwindcss.com), Lucide Icons, Hugeicons |
 | **Runtime & Tooling** | [Bun](https://bun.sh), [Vite](https://vitejs.dev), TypeScript, Biome |
